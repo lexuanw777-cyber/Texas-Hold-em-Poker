@@ -1,0 +1,4 @@
+node_modules/
+.workbuddy/
+npm-debug.log*
+.DS_Store

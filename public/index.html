@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>在线德州扑克</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 大厅 -->
+  <div id="lobby" class="lobby">
+    <div class="lobby-card">
+      <h1>♠ 在线德州扑克 ♥</h1>
+      <p class="sub">No-Limit Texas Hold'em · 多人实时</p>
+      <label>昵称</label>
+      <input id="nameInput" placeholder="你的名字" maxlength="16" />
+      <label>房间号</label>
+      <input id="roomInput" placeholder="如 poker-101（朋友需相同房间号）" />
+      <label>倍率（决定筹码与盲注）</label>
+      <div id="multSel" class="mult-sel">
+        <button class="mult-btn" data-m="1">×1</button>
+        <button class="mult-btn" data-m="2">×2</button>
+        <button class="mult-btn active" data-m="5">×5</button>
+        <button class="mult-btn" data-m="10">×10</button>
+      </div>
+      <button id="joinBtn">加入房间</button>
+      <p class="tip">把房间号发给朋友，他们用同一房间号即可同桌。倍率×5 为例：每人 5000 筹码，盲注 50/100。房间倍率由首位加入者决定。</p>
+    </div>
+  </div>
+
+  <!-- 游戏 -->
+  <div id="game" class="game hidden">
+    <div class="topbar">
+      <span id="roomTag" class="room-tag"></span>
+      <span id="stageTag" class="stage-tag"></span>
+      <span id="multTag" class="mult-tag"></span>
+      <button id="copyBtn" class="ghost">复制房间号</button>
+      <button id="leaveBtn" class="ghost">离开</button>
+    </div>
+
+    <div id="table" class="table">
+      <div id="community" class="community"></div>
+      <div id="pot" class="pot"></div>
+      <div id="seats" class="seats"></div>
+    </div>
+
+    <!-- 记分板 -->
+    <div id="scoreboard" class="scoreboard">
+      <h3>记分板</h3>
+      <table>
+        <thead>
+          <tr><th>#</th><th>玩家</th><th>筹码</th><th>手数</th><th>胜场</th><th>总赢</th><th>最大底池</th></tr>
+        </thead>
+        <tbody id="scoreBody"></tbody>
+      </table>
+    </div>
+
+    <!-- 你的区域 -->
+    <div id="you" class="you">
+      <div id="yourCards" class="your-cards"></div>
+      <div id="actions" class="actions"></div>
+    </div>
+
+    <!-- 日志 -->
+    <div id="log" class="log"></div>
+
+    <!-- 开始遮罩 -->
+    <div id="startOverlay" class="overlay hidden">
+      <button id="startBtn" class="primary">开始游戏</button>
+      <p id="waitingHint" class="hint"></p>
+    </div>
+
+    <!-- 摊牌结果 -->
+    <div id="showdownOverlay" class="overlay hidden"></div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
